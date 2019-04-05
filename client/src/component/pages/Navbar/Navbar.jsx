@@ -24,21 +24,25 @@ class AppNavbar extends Component {
     render() {
         return (
             <div>
-                <Navbar color="primary" dark expand="md" className="mb-5">
+                <Navbar color="danger" dark expand="md" className="mb-5">
                     <NavbarBrand>
                         Style_hub
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
+
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <input type="text" placeholder="Search"/>
+                                <NavLink to="/" className="nav-link">Home</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink to="/login" className="nav-link">login</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink to="/sign-up" className="nav-link">Sign up</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <input type="text" placeholder="Search" />
                             </NavItem>
                         </Nav>
                     </Collapse>
