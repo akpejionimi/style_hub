@@ -30,7 +30,7 @@ class ListUsers extends Component {
         ]
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/api')
+        axios.get('http://localhost:5000/api/user')
             .then(res => {
                 console.log(res)
                 let updatedUsers = res.data;

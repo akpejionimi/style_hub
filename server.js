@@ -9,14 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const homeRoute = require ("./routes/api/home");
+// const homeRoute = require ("./routes/api/home");
 const userRoute = require ("./routes/api/userRoute");
 const userLogin =  require("./routes/api/auth")
 
 //Route
-app.use ("/api", userRoute);
+app.use ("/api/user", userRoute);
 app.use ("/api/auth", userLogin);
-app.use ("/api", homeRoute);
+// app.use ("/api", homeRoute);
 
 // PORT
 const PORT = process.env.PORT || 5000;

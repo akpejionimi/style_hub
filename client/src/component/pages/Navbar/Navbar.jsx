@@ -36,11 +36,11 @@ class AppNavbar extends Component {
                                 <NavLink to="/" className="nav-link">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/login" className="nav-link">login</NavLink>
+                                <NavLink to="/auth" className="nav-link">login/SignUp</NavLink>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink to="/sign-up" className="nav-link">Sign up</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
                                 <input type="text" placeholder="Search" />
                             </NavItem>
