@@ -22,15 +22,18 @@ import { auth, toggleAuth } from "../../../store/actions/auth";
 
 class Auth extends Component {
   state = {
-    name: "",
+    brandname: "",
+    username: "",
     email: "",
     password: "",
     password2: "",
+    phoneNo: "",
+    location: "",
     passwordMatched: false
   };
 
   onChanged = e => {
-    this.setState({
+    this.setState({ 
       [e.target.name]: e.target.value
     });
   };
@@ -46,9 +49,12 @@ class Auth extends Component {
       this.props.onAuth(formData);
     } else {
       formData = {
-        name: this.state.name,
+        brandname: this.state.brandname,
+        username: this.state.username,
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        phoneNo: this.state.phoneNo,
+        location: this.state.location
       };
       this.props.onAuth(formData);
     }
@@ -57,7 +63,7 @@ class Auth extends Component {
   render() {
     const {isLogin, isAuth, error } = this.props;
     return (
-      <Container>
+      <Container className="card-design"> 
         {isAuth && <Redirect to="/" />}
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
@@ -134,8 +140,8 @@ class Auth extends Component {
                       <Label for="name">Phone No</Label>
                       <Input
                         type="number"
-                        name="phone_no"
-                        id="phone_no"
+                        name="phoneNo"
+                        id="phoneNo" 
                         placeholder="Phone No"
                         onChange={this.onChanged}
                       />

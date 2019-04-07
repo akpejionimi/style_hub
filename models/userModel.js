@@ -37,7 +37,7 @@ User.init({
         type: Sequelize.STRING,
         allowNull: false
     }, 
-    phone_no: {
+    phoneNo: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,

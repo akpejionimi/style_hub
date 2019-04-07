@@ -15,41 +15,23 @@ exports.getUser = (req, res, next) => {
 
 
 exports.postAddUser = (req, res, next) => {
-    const { brandname, username, email, password, confirm_password, phone_no, location } = req.body;
-    if(!brandname || !username || !email || !password || !confirm_password || !phone_no || !location) {
+    const { brandname, username, email, password, phoneNo, location } = req.body;
+    if(!brandname || !username || !email || !password || !phoneNo || !location) {
         res.status(400).json({ msg: "All Fields are required" })
     }
-    else if(password != confirm_password) {
-        res.status(401).json({ msg: "Password doesnt't match"})
-    }else {
+    // else if(password !== password2) {
+    //     res.status(401).json({ msg: "Password doesnt't match"})
+    // }
+    else {
         let hashedPassword;
         User.findOne({
             where: { email }
 
         }).then(user => {
             if(user) {
-                return res.status(400).json({ msg: "User already exists" })
+                return res.status(400).json({ msg: "cridentials already exists" })
             }
         }).catch(err => next(err))
-
-        User.findOne({
-            where: { username }
-
-        }).then(user => {
-            if(user) {
-                return res.status(400).json({ msg: "username is taken" })
-            }
-        }).catch(err => next(err))
-
-        User.findOne({
-            where: { phone_no }
-
-        }).then(user => {
-            if(user) {
-                return res.status(400).json({ msg: "Phone number already exists" })
-            }
-        }).catch(err => next(err))
-
         try {
             const salt = bcrypt.genSaltSync(10);
             hashedPassword = bcrypt.hashSync(password, salt);
@@ -61,7 +43,7 @@ exports.postAddUser = (req, res, next) => {
             username,
             email,
             password: hashedPassword,
-            phone_no,
+            phoneNo,
             location,
         }).then(user => {
             jwt.sign(
@@ -75,7 +57,7 @@ exports.postAddUser = (req, res, next) => {
                             brandname: user.brandname,
                             username: user.username,
                             email: user.email,
-                            phone_no: user.phone_no,
+                            phone_no: user.phoneNo,
                             location: user.location
                         }
                     })
