@@ -20,7 +20,6 @@ export const auth = authData => (dispatch, getsate) => {
     dispatch(authStart());
     const isLogin = getsate().auth.isLogin;
     const endPoint = isLogin ? "auth" : "user";
-    //not clear
     axios.post("/" + endPoint, authData)
     .then(res => {
         const { token, user} = res.data;

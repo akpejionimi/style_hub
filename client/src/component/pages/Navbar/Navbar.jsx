@@ -35,12 +35,24 @@ class AppNavbar extends Component {
                             <NavItem>
                                 <NavLink to="/" className="nav-link">Home</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink to="/auth" className="nav-link">login/SignUp</NavLink>
-                            </NavItem>
-                            {/* <NavItem>
-                                <NavLink to="/sign-up" className="nav-link">Sign up</NavLink>
-                            </NavItem> */}
+                            {this.props.isAuth && (
+								<NavItem>
+									<NavLink to="/add-post" className="nav-link">
+										Add Job
+									</NavLink>
+								</NavItem>
+							)}
+							<NavItem>
+								{this.props.isAuth ? (
+									<NavLink to="/logout" className="nav-link">
+										Logout
+									</NavLink>
+								) : (
+									<NavLink to="/auth" className="nav-link">
+										Login
+									</NavLink>
+								)}
+							</NavItem>
                             <NavItem>
                                 <input type="text" placeholder="Search" />
                             </NavItem>

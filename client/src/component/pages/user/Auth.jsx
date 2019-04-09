@@ -158,7 +158,18 @@ class Auth extends Component {
                         onChange={this.onChanged}
                       />
                     </FormGroup>
-                  )}
+                   )}
+                    {/* {!isLogin && (
+                    <FormGroup>
+                    <Label for="name">Location</Label>
+                      <select class="select">
+                      <option>Lagos</option>
+                      <option>London</option>
+                      <option>Yaba</option>
+                      <option>Gwagwalada</option>
+                  </select>
+                  </FormGroup>
+                  )} */}
                   {!isLogin ? 
                   (<Button color="primary">Register</Button>) 
                   : 

@@ -1,10 +1,10 @@
-//JOB
-export const GET_JOBS = "GET JOBS";
-export const GET_JOBS_SUCCESS = "GET JOBS SUCCESS";
-export const GET_SINGLE_JOB_SUCCESS = "GET SINGLE JOB SUCCESS";
-export const ADD_JOB_INIT = "ADD JOB INIT";
-export const ADD_JOB = "ADD JOB";
-export const ADD_JOB_SUCCESS = "ADD JOB SUCCESS";
+//Post
+export const GET_POSTS = "GET POST";
+export const GET_POSTS_SUCCESS = "GET POSTS SUCCESS";
+export const GET_SINGLE_POST_SUCCESS = "GET SINGLE POST SUCCESS";
+export const ADD_POST_INIT = "ADD POST INIT";
+export const ADD_POST = "ADD POST";
+export const ADD_POST_SUCCESS = "ADD POST SUCCESS";
 export const LOADING = "LOADING";
 export const ERROR_OCCURED = "ERROR_OCCURED";
 

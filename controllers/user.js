@@ -1,4 +1,4 @@
-const { User } = require ("../models/userModel");
+const { User } = require("../models/userModel");
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -16,7 +16,7 @@ exports.getUser = (req, res, next) => {
 
 exports.postAddUser = (req, res, next) => {
     const { brandname, username, email, password, phoneNo, location } = req.body;
-    if(!brandname || !username || !email || !password || !phoneNo || !location) {
+    if (!brandname || !username || !email || !password || !phoneNo || !location) {
         res.status(400).json({ msg: "All Fields are required" })
     }
     // else if(password !== password2) {
@@ -25,11 +25,15 @@ exports.postAddUser = (req, res, next) => {
     else {
         let hashedPassword;
         User.findOne({
-            where: { email }
+            where: {
+                email,
+                username,
+                phoneNo
+            }
 
         }).then(user => {
-            if(user) {
-                return res.status(400).json({ msg: "cridentials already exists" })
+            if (user) {
+                return res.status(400).json({ msg: "Cridentials already exists" })
             }
         }).catch(err => next(err))
         try {
@@ -47,8 +51,8 @@ exports.postAddUser = (req, res, next) => {
             location,
         }).then(user => {
             jwt.sign(
-                { id: user.id }, 
-                process.env.AUTH_SECRET_KEY, 
+                { id: user.id },
+                process.env.AUTH_SECRET_KEY,
                 (err, token) => {
                     res.json({
                         token,
@@ -72,9 +76,9 @@ exports.deleteUser = (req, res) => {
         .then(user => {
             user.destroy()
                 .then(() => {
-                    res.json({success: true})
+                    res.json({ success: true })
                 })
-                .catch(err => res.json({success: false}))
+                .catch(err => res.json({ success: false }))
         })
-        .catch(err => res.json({success: false, message: "This User doesnt exists"}))
+        .catch(err => res.json({ success: false, message: "This User doesnt exists" }))
 }

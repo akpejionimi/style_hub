@@ -61,26 +61,20 @@ User.init({
     }
 }, {sequelize : db,
 });
-// DESIGNER POST
+// Designer's Post
 class Designer_Post extends Sequelize.Model{}
 Designer_Post.init({
-    Title: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    Content: {
-        type: Sequelize.TEXT,
-    }, 
-    Price: {
-        type: Sequelize.STRING,
+    content: {
+        type: Sequelize.STRING
     }
 }, {sequelize : db,
 });
+
 // CATEGORY POST
 class Designer_Category extends Sequelize.Model{}
 Designer_Category.init({
     CategoryId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     Type: {
@@ -88,36 +82,40 @@ Designer_Category.init({
     }
 }, {sequelize : db,
 });
+
 // COMMENT POST
 class Comment extends Sequelize.Model{}
 Comment.init({
-    CommentId: {
-        type: Sequelize.STRING,
+    commentId: {
+        type: Sequelize.INTEGER,
     },
-    Comment_Text: {
+    commentText: {
         type: Sequelize.TEXT,
     }
 }, {sequelize : db,
 });
+
 // DESIGNER PHOTOS
 class Designer_Photos extends Sequelize.Model{}
 Designer_Photos.init({
-    PhotoId: {
-        type: Sequelize.STRING,
+    photoId: {
+        type: Sequelize.INTEGER,
     },
-    Images: {
-        type: Sequelize.TEXT,
+    images: {
+        type: Sequelize.BLOB,
     }
 }, {sequelize : db,
 });
+
 // FOLLOWERS
 class Followers extends Sequelize.Model{}
 Followers.init({
-    FollowersId: {
+    followersId: {
         type: Sequelize.STRING,
     }
 }, {sequelize : db,
 });
+
 Designer_Category.hasOne(Designer_Post);
 Comment.hasOne(Designer_Post);
 User.hasOne(Followers);
@@ -125,6 +123,9 @@ Designer_Photos.hasOne(Designer_Post);
 Designer_Post.belongsTo(Designer_Category);
 Designer_Post.belongsTo(Designer_Photos);
 Followers.belongsTo(User)
+
+
+
 module.exports = {
     User,
     Comment,
