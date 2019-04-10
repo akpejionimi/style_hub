@@ -12,11 +12,13 @@ app.use(express.json());
 const userRoute = require ("./routes/api/userRoute");
 const userLogin =  require("./routes/api/auth")
 const postRoute =  require("./routes/api/post")
+const categoryRoute = require("./routes/api/category")
 
 //Route
 app.use ("/api/user", userRoute);
 app.use ("/api/auth", userLogin);
 app.use ("/api/post", postRoute);
+app.use ("/api/cart", categoryRoute);
 
 // PORT
 const PORT = process.env.PORT || 5000;

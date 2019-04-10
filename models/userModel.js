@@ -66,6 +66,10 @@ class Designer_Post extends Sequelize.Model{}
 Designer_Post.init({
     content: {
         type: Sequelize.STRING
+    },
+    images: {
+        type: Sequelize.STRING,
+        // allowNull: false
     }
 }, {sequelize : db,
 });

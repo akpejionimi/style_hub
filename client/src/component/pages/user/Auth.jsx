@@ -147,29 +147,18 @@ class Auth extends Component {
                       />
                     </FormGroup>
                   )}
-                   {!isLogin && (
-                    <FormGroup>
-                      <Label for="name">Location</Label>
-                      <Input
-                        type="text"
-                        name="location"
-                        id="location"
-                        placeholder="Enter Location"
-                        onChange={this.onChanged}
-                      />
-                    </FormGroup>
-                   )}
-                    {/* {!isLogin && (
+                    {!isLogin && (
                     <FormGroup>
                     <Label for="name">Location</Label>
-                      <select class="select">
-                      <option>Lagos</option>
-                      <option>London</option>
-                      <option>Yaba</option>
-                      <option>Gwagwalada</option>
-                  </select>
+                    <Input type="select" name="location" id="location" onChange={this.onChanged}>
+                      <option value="">Select Location</option>
+                      <option value="1">Lagos</option>
+                      <option value="2">London</option>
+                      <option value="3">Yaba</option>
+                      <option value="4">Gwagwalada</option>
+                      </Input>
                   </FormGroup>
-                  )} */}
+                  )}
                   {!isLogin ? 
                   (<Button color="primary">Register</Button>) 
                   : 

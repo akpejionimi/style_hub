@@ -24,8 +24,9 @@ class PostList extends Component {
                 < Col sm={5} className="card-design">
                     <Card >
                         {this.state.Posts.map((post) => (
-                            <ListGroupItem key={post.id}>{post.content}
+                            <ListGroupItem key={post.id}>{post.images} {post.content}
                                 </ListGroupItem>
+                                
                         ))}
                     </Card>
                 </ Col>

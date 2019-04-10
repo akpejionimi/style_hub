@@ -12,20 +12,23 @@ import {
 	Spinner,
 	Alert,
 	Row,
-	Col
+	Col,
+	Label
 } from "reactstrap";
 
 import { addPost, addPostInit} from "../../../store/actions/designerPost";
 
 class AddPost extends Component {
 	state = {
-		content: ""
+		content: "",
+		// images: ""
 	};
 
 	save = e => {
 		e.preventDefault();
 		const formData = {
-			content: this.state.content
+			content: this.state.content,
+			// images: this.state.images
 		
 		};
 		// Sets the "jobCreated" state to true on success,
@@ -53,21 +56,19 @@ class AddPost extends Component {
 							{this.props.error && (
 								<Alert color="danger">{this.props.error.msg}</Alert>
                             )}
-
-							{/* <FormGroup> */}
-								{/* <Label for="Post Content">Content</Label> */}
-								{/* <Input
-									type="text"
-									name="title"
-									id="title"
-									placeholder="Recipe Title"
-									onChange={this.onChanged}
-								/>
-							</FormGroup> */}
-                            <FormGroup>
+                            {/* <FormGroup> */}
                                 {/* <Label for="Add Post">post photo</Label> */}
-                                    <Input type="file" name="imageUrl" id="imageUrl" />
-                            </FormGroup>
+                                    {/* <Input type="file" name="images" id="imageUrl" />
+							</FormGroup> */}
+							  <FormGroup>
+                                <Label for="Design category">Select Category</Label>
+                                <Input type="select" name="categoryId" id="categoryId" onChange={this.onChanged}>
+                                     <option value="">Select Category</option>
+                                     <option value="1">kids wear</option>
+                                     <option value="2">Coperate Wears</option>
+                                </Input>
+                            </FormGroup><FormGroup></FormGroup>
+			
                             <FormGroup>
 								{/* <Label for="recipe description">Description</Label> */}
 								<Input

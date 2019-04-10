@@ -11,13 +11,12 @@ exports.getAllPosts =  (req, res)=>{
 }
 
 exports.postNewWears = (req, res, next)=>{
-    const {title, content, price} = req.body;
+    const {content, images} = req.body;
 
      // INSERT FILMS
      Designer_Post.create({
-        title,
         content,
-        price
+        images
     }).then((posts) => {
         res.json(posts);
         // console.log(posts);
