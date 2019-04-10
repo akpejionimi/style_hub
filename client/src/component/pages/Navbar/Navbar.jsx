@@ -38,7 +38,7 @@ class AppNavbar extends Component {
                             {this.props.isAuth && (
 								<NavItem>
 									<NavLink to="/add-post" className="nav-link">
-										Add Job
+										Add post
 									</NavLink>
 								</NavItem>
 							)}
