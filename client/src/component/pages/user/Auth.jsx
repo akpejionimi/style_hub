@@ -10,6 +10,7 @@ import {
   FormFeedback,
   Container,
   Row,
+  FormText,
   Col,
   Card,
   CardBody,
@@ -27,13 +28,21 @@ class Auth extends Component {
     email: "",
     password: "",
     password2: "",
+    imageUrl: "",
     phoneNo: "",
     location: "",
     passwordMatched: false
   };
 
+  // Event handler for the file input field
+  onImgChanged = e => {
+    this.setState({
+      imageUrl: e.target.files[0]
+    });
+  };
+
   onChanged = e => {
-    this.setState({ 
+    this.setState({
       [e.target.name]: e.target.value
     });
   };
@@ -53,6 +62,7 @@ class Auth extends Component {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password,
+        imageUrl: this.state.imageUrl,
         phoneNo: this.state.phoneNo,
         location: this.state.location
       };
@@ -61,23 +71,28 @@ class Auth extends Component {
   };
 
   render() {
-    const {isLogin, isAuth, error } = this.props;
+    const { isLogin, isAuth, error } = this.props;
     return (
-      <Container className="card-design"> 
+      <Container className="card-design">
         {isAuth && <Redirect to="/" />}
         <Row>
           <Col md={{ size: 6, offset: 3 }}>
             <Card>
-            {!isLogin ? 
-                  ( <CardHeader tag="h2">Register</CardHeader>) 
-                  : 
-                  (<CardHeader tag="h2">Login</CardHeader>
-                  )}
-              
+              {!isLogin ?
+                (<CardHeader tag="h2">Register</CardHeader>)
+                :
+                (<CardHeader tag="h2">Login</CardHeader>
+                )}
+
               <CardBody>
                 {error && <Alert color="danger">{this.props.error.msg}</Alert>}
-                <Form onSubmit={this.submitForm} action="POST">
-                {!isLogin && (
+                <Form onSubmit={this.submitForm} action="POST" encType={
+										!isLogin
+											? "multipart/form-data"
+											: "application/x-www-form-urlencoded"
+                  }
+                  >
+                  {!isLogin && (
                     <FormGroup>
                       <Label for="name">BrandName</Label>
                       <Input
@@ -100,7 +115,7 @@ class Auth extends Component {
                       />
                     </FormGroup>
                   )}
-                 
+
                   <FormGroup>
                     <Label for="email">Email</Label>
                     <Input
@@ -135,36 +150,51 @@ class Auth extends Component {
                       <FormFeedback>Password doesnt match</FormFeedback>
                     </FormGroup>
                   )}
-                   {!isLogin && (
+                  {!isLogin && (
+                    <FormGroup>
+                      <Label for="profilePic">Profile Picture</Label>
+                      <Input
+                        type="file"
+                        name="imageUrl"
+                        id="profilePic"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={this.onImgChanged}
+                      />
+                      <FormText color="muted">
+                        Images must be png, jpg or jpeg format.
+											</FormText>
+                    </FormGroup>
+                  )}
+                  {!isLogin && (
                     <FormGroup>
                       <Label for="name">Phone No</Label>
                       <Input
                         type="number"
                         name="phoneNo"
-                        id="phoneNo" 
+                        id="phoneNo"
                         placeholder="Phone No"
                         onChange={this.onChanged}
                       />
                     </FormGroup>
                   )}
-                    {!isLogin && (
+                  {!isLogin && (
                     <FormGroup>
-                    <Label for="name">Location</Label>
-                    <Input type="select" name="location" id="location" onChange={this.onChanged}>
-                      <option value="">Select Location</option>
-                      <option value="1">Lagos</option>
-                      <option value="2">London</option>
-                      <option value="3">Yaba</option>
-                      <option value="4">Gwagwalada</option>
+                      <Label for="name">Location</Label>
+                      <Input type="select" name="location" id="location" onChange={this.onChanged}>
+                        <option value="">Select Location</option>
+                        <option value="1">Lagos</option>
+                        <option value="2">London</option>
+                        <option value="3">Yaba</option>
+                        <option value="4">Gwagwalada</option>
                       </Input>
-                  </FormGroup>
+                    </FormGroup>
                   )}
-                  {!isLogin ? 
-                  (<Button color="primary">Register</Button>) 
-                  : 
-                  (<Button color="primary">Login</Button>
-                  )}
-                  
+                  {!isLogin ?
+                    (<Button color="primary">Register</Button>)
+                    :
+                    (<Button color="primary">Login</Button>
+                    )}
+
                 </Form>
               </CardBody>
               <CardFooter>

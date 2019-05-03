@@ -30,6 +30,7 @@ class ListUsers extends Component {
                                 <div>{user.username} </div>
                                 <div>{user.email} </div>
                                 <div>{user.phoneNo} </div>
+                                <img src={`http://localhost:5000/${user.imageUrl}`} alt="profile"/>
                                 <div>{user.location} </div></ListGroupItem>
                         ))}
                     </Card>

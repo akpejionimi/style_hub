@@ -36,6 +36,10 @@ User.init({
     password: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: true
     }, 
     phoneNo: {
         type: Sequelize.STRING,
@@ -47,11 +51,11 @@ User.init({
             }
         }
     },
-    photo: {
-        type: Sequelize.STRING,
-        // allowNull: false
+    // photo: {
+    //     type: Sequelize.STRING,
+    //     // allowNull: false
      
-    },
+    // },
     // social_Media: {
     //     type: Sequelize.STRING,
     // },

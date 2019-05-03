@@ -16,6 +16,17 @@ exports.getUser = (req, res, next) => {
 
 exports.postAddUser = (req, res, next) => {
     const { brandname, username, email, password, phoneNo, location } = req.body;
+    let imageUrl = null;
+	// req.file is availble because of multer.
+	// remember req.body was available because of bodyParser
+	// multer gives you access to files and data submitted from forms with
+    // enctype="multipart/form-data"
+    console.log(req.body);
+	if (req.file) {
+		imageUrl = req.file.path;
+    }
+    
+    
     if (!brandname || !username || !email || !password || !phoneNo || !location) {
         res.status(400).json({ msg: "All Fields are required" })
     }
@@ -47,6 +58,7 @@ exports.postAddUser = (req, res, next) => {
             username,
             email,
             password: hashedPassword,
+            imageUrl,
             phoneNo,
             location,
         }).then(user => {
@@ -61,6 +73,7 @@ exports.postAddUser = (req, res, next) => {
                             brandname: user.brandname,
                             username: user.username,
                             email: user.email,
+                            imageUrl: user.imageUrl,
                             phone_no: user.phoneNo,
                             location: user.location
                         }

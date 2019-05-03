@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const db = require("./config/database")
 
@@ -13,6 +14,9 @@ const userRoute = require ("./routes/api/userRoute");
 const userLogin =  require("./routes/api/auth")
 const postRoute =  require("./routes/api/post")
 const categoryRoute = require("./routes/api/category")
+
+// Create a static directory for our uploads
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //Route
 app.use ("/api/user", userRoute);

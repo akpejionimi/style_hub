@@ -44,3 +44,23 @@ exports.postLogin = (req, res, next) => {
         }).catch(err => next(err))
     }
 } 
+
+/**
+ * Gets the current logged in user
+ */
+exports.getCurrentUser = (req, res, next) => {
+	const userId = req.userId;
+	User.findByPk("userId", {
+		attributes: { exclude: ["password", "updatedAt"] }
+	})
+		.then(user => {
+			if (!user) {
+				const error = new Error("User Not Found");
+				error.statusCode = 404;
+				next(error);
+			} else {
+				res.json(user);
+			}
+		})
+		.catch(error => next(error));
+};
